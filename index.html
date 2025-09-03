@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ihab Souey — Développeur Full‑Stack</title>
+  <meta name="description" content="Portfolio d'Ihab Souey, développeur Full‑Stack à Paris (React, Next.js, TypeScript, Angular, Python). À la recherche d’un CDI." />
+  <meta name="theme-color" content="#111827" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card: #111826;
+      --card-2: #0e1522;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --brand: #6ee7b7;
+      --brand-2: #22d3ee;
+      --accent: #a78bfa;
+      --ring: #334155;
+      --maxw: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(79,70,229,0.15), transparent 60%),
+                  radial-gradient(1000px 500px at 80% 10%, rgba(34,211,238,0.18), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Layout */
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+    header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px);
+      background: linear-gradient(to bottom, rgba(11,15,23,0.8), rgba(11,15,23,0.35));
+      border-bottom: 1px solid rgba(148,163,184,0.12);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav a { color: var(--muted); text-decoration: none; padding: 10px 14px; border-radius: 10px; }
+    .nav a:hover, .nav a:focus { color: var(--text); background: rgba(148,163,184,0.08); outline: none; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: .2px; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 999px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 0 24px rgba(34,211,238,0.6); }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; padding: 56px 0 24px; align-items: center; }
+    .hero h1 { font-size: clamp(28px, 5vw, 46px); line-height: 1.1; margin: 0 0 8px; }
+    .hero .subtitle { font-size: clamp(16px, 2.2vw, 20px); color: var(--muted); margin: 0 0 22px; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(167,139,250,0.12); color: #e9d5ff; border: 1px solid rgba(167,139,250,0.35); font-weight: 600; }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+    .btn { appearance: none; border: 0; border-radius: 14px; padding: 12px 16px; font-weight: 600; cursor: pointer; }
+    .btn-primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0b0f17; box-shadow: 0 10px 24px rgba(34,211,238,0.25); }
+    .btn-ghost { background: rgba(148,163,184,0.08); color: var(--text); border: 1px solid rgba(148,163,184,0.18); }
+    .btn:hover { transform: translateY(-1px); }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(148,163,184,0.12);
+      border-radius: 18px; padding: 18px; box-shadow: 0 6px 24px rgba(2, 6, 23, 0.35) inset;
+    }
+
+    /* Sections */
+    section { padding: 28px 0; }
+    .section-title { display:flex; align-items:center; gap:10px; margin: 8px 0 18px; }
+    .section-title h2 { margin: 0; font-size: clamp(20px, 3vw, 26px); }
+    .pill { width: 9px; height: 24px; border-radius: 999px; background: linear-gradient(180deg, var(--brand-2), var(--brand)); box-shadow: 0 0 16px rgba(34,211,238,0.6); }
+
+    /* Grid helpers */
+    .grid { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    /* Experience */
+    .xp-item { display:grid; grid-template-columns: 160px 1fr; gap: 16px; padding: 14px; border-radius: 16px; border: 1px dashed rgba(148,163,184,0.18); cursor: pointer; }
+    .xp-item:hover { background: rgba(148,163,184,0.05); }
+    .xp-date { color: var(--muted); font-weight: 600; }
+    .xp-role { display:flex; align-items:center; justify-content: space-between; gap: 12px; }
+    .xp-role h3 { margin: 0; font-size: 18px; }
+    .xp-role .place { color: var(--muted); font-weight: 500; }
+    .xp-item ul { margin: 10px 0 0 18px; padding: 0; }
+    .xp-item li { margin: 8px 0; }
+
+    /* Projects */
+    .project { padding: 16px; border: 1px solid rgba(148,163,184,0.12); border-radius: 16px; background: rgba(255,255,255,0.02); cursor: pointer; }
+    .project:hover { background: rgba(148,163,184,0.05); }
+    .project h4 { margin: 0 0 6px; }
+    .tag { display:inline-block; font-size: 12px; padding: 4px 8px; border-radius: 999px; background: rgba(148,163,184,0.1); color: var(--muted); margin: 4px 6px 0 0; border: 1px solid rgba(148,163,184,0.2); cursor: pointer }
+    .tag:hover { background: rgba(148,163,184,0.2); color: var(--text); border-color: rgba(148,163,184,0.3); }
+    /* Aside cards */
+    .stack-list { display:flex; flex-wrap: wrap; gap: 8px; }
+
+    /* Footer */
+    footer { border-top: 1px solid rgba(148,163,184,0.12); margin-top: 24px; }
+    .footer { display:flex; align-items:center; justify-content: space-between; padding: 18px 0; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .xp-item { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="dot" aria-hidden="true"></div>
+        <span>Ihab Souey</span>
+      </div>
+      <nav>
+        <a href="#about">Profil</a>
+        <a href="#experience">Expériences</a>
+        <a href="#projects">Missions</a>
+        <a href="#education">Formation</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <span class="badge">À la recherche d’un CDI</span>
+        <h1 id="hero-title">Développeur Full‑Stack — Paris</h1>
+        <p class="subtitle">Spécialisé en JavaScript (React, Next.js, TypeScript, Angular) et Python. J’aide les équipes à livrer des interfaces propres, performantes et orientées produit.</p>
+        <div class="cta-row">
+          <a class="btn btn-ghost" href="https://linkedin.com/in/ihab-souey" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+          <a class="btn btn-ghost" href="https://github.com/ihabsouey" target="_blank" rel="noreferrer noopener">Github</a>
+          <button class="btn btn-ghost" id="copyEmail" data-email="ihab.souey@gmail.com">Copier e‑mail</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="grid grid-2">
+          <div>
+            <div class="section-title"><span class="pill"></span><h2>Coordonnées</h2></div>
+            <p><strong>Nom :</strong> Ihab Souey<br>
+               <strong>Localisation :</strong> Paris, France<br>
+               <strong>Tél :</strong> <a href="tel:+33745325577">+33 7 45 32 55 77</a><br>
+               <strong>E‑mail :</strong> <a href="mailto:ihab.souey@gmail.com">ihab.souey@gmail.com</a>
+            </p>
+          </div>
+          <div>
+            <div class="section-title"><span class="pill"></span><h2>Compétences clés</h2></div>
+            <div class="stack-list">
+              <span class="tag">React</span>
+              <span class="tag">Next.js</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Angular</span>
+              <span class="tag">Python</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">REST API</span>
+              <span class="tag">Tailwind</span>
+              <span class="tag">AG Grid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-title"><span class="pill"></span><h2>Profil</h2></div>
+      <div class="card">
+        <p>Développeur Full‑Stack avec des expériences en conception et développement d'applications web et mobiles. Fort de mon expérience en alternance, en freelance et en stage, j'ai aidé de nombreuses entreprises à moderniser leurs solutions et optimiser leurs processus.</p>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <div class="section-title"><span class="pill"></span><h2>Expériences professionnelles</h2></div>
+      <div class="grid">
+        <article class="xp-item">
+          <div class="xp-date">01/2025 – 09/2025</div>
+          <div>
+            <div class="xp-role">
+              <h3>Développeur / Intégrateur (Alternance)</h3>
+              <span class="place">Fitle — Paris, France</span>
+            </div>
+            <ul>
+              <li>Assistance à l'intégration : accompagnement de plus de 15 nouveaux clients pour intégrer la solution de recommandation de taille.</li>
+              <li>Migration de solutions : bascule de plus de 10 clients vers la nouvelle plateforme.</li>
+              <li>Suivi des performances : monitoring et traitement des événements (produits, paniers, achats) pour &gt;95% des clients.</li>
+              <li>Refonte UI : amélioration du plugin et du Dashboard interne (React, Python, API REST).</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="xp-item">
+          <div class="xp-date">02/2024 – 08/2024</div>
+          <div>
+            <div class="xp-role">
+              <h3>Développeur Frontend (Stage)</h3>
+              <span class="place">Capital Fund Management — Paris, France</span>
+            </div>
+            <ul>
+              <li>Développement d’interfaces utilisateur pour améliorer l’expérience client et l’efficacité interne.</li>
+              <li>Améliorations d’ergonomie orientées productivité.</li>
+              <li>Optimisation des performances (Angular, AG Grid, Python, Flask, API REST).</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="xp-item">
+          <div class="xp-date">07/2023 – 02/2024</div>
+          <div>
+            <div class="xp-role">
+              <h3>Développeur Frontend (Freelance)</h3>
+              <span class="place">Expertify — Paris, France</span>
+            </div>
+            <ul>
+              <li>Conception et développement de sites vitrines sur mesure de bout en bout.</li>
+              <li>Stack : Next.js, React, TypeScript, Tailwind CSS, Storybook.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="xp-item">
+          <div class="xp-date">01/2022 – 04/2022</div>
+          <div>
+            <div class="xp-role">
+              <h3>Junior Consultant (Stage)</h3>
+              <span class="place">Global consultant — Dubaï, Émirats arabes unis</span>
+            </div>
+            <ul>
+              <li>Refonte de sites web : modernisation des interfaces et optimisation des performances.</li>
+              <li>Stack : React, Node.js.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="xp-item">
+          <div class="xp-date">02/2021 – 06/2021</div>
+          <div>
+            <div class="xp-role">
+              <h3>Développeur Mobile (Stage)</h3>
+              <span class="place">Indigo Business Solutions — Tunis, Tunisie</span>
+            </div>
+            <ul>
+              <li>Conception et développement d’une application mobile de gestion de stock (Android Studio, XML, Java).</li>
+              <li>Numérisation et suivi produits par codes‑barres, inventaire en temps réel, réduction des erreurs de saisie.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Projects / Missions Freelance -->
+    <section id="projects">
+      <div class="section-title"><span class="pill"></span><h2>Missions freelance</h2></div>
+      <div class="grid grid-2">
+        <article class="project">
+          <h4>Instructeur Python — GoMyCode (Tunisie)</h4>
+          <p>Animation d’un programme intensif de 2 mois : pédagogie, TP et accompagnement.</p>
+          <div>
+            <span class="tag">Python</span>
+            <span class="tag">Pédagogie</span>
+          </div>
+        </article>
+        <article class="project">
+          <h4>Pinnacle Syndicate (USA)</h4>
+          <p>Création d’un site web sur mesure.</p>
+          <div>
+            <span class="tag">PHP</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">Tailwind</span>
+            <span class="tag">Vue.js</span>
+          </div>
+        </article>
+        <article class="project">
+          <h4>E‑Travel (Libye)</h4>
+          <p>Ajout d’un module de points de fidélité.</p>
+          <div>
+            <span class="tag">Java</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">AngularJS</span>
+          </div>
+        </article>
+        <article class="project">
+          <h4>Tesseract Mobile (USA)</h4>
+          <p>Site vitrine livré de bout en bout.</p>
+          <div>
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Figma</span>
+          </div>
+        </article>
+        <article class="project">
+          <h4>Musikschule Hug (Suisse)</h4>
+          <p>Dashboard de gestion des réservations.</p>
+          <div>
+            <span class="tag">REST API</span>
+            <span class="tag">React</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Education & Languages -->
+    <section id="education">
+      <div class="grid grid-2">
+        <div>
+          <div class="section-title"><span class="pill"></span><h2>Formation</h2></div>
+          <div class="card">
+            <p><strong>Master of Sciences – Web & Mobile Development</strong><br>
+               ESTIAM — Paris, France · 2024–2025
+            </p>
+            <hr style="border-color: rgba(148,163,184,0.12)">
+            <p><strong>Diplôme d’ingénieur en sciences du numérique</strong><br>
+               TEK‑UP — Tunis, Tunisie · 2022–2024<br>
+               <em>Semestre d’échange : CESI Rouen (France)</em>
+            </p>
+            <hr style="border-color: rgba(148,163,184,0.12)">
+            <p><strong>Licence en technologies de l’informatique</strong><br>
+               ISET Radès — Tunisie · 2018–2021
+            </p>
+            <hr style="border-color: rgba(148,163,184,0.12)">
+            <p><strong>Baccalauréat – Sciences de l’informatique</strong><br>
+               Lycée El Guettar — Tunisie · 2017–2018
+            </p>
+          </div>
+        </div>
+        <aside>
+          <div class="section-title"><span class="pill"></span><h2>Langues</h2></div>
+          <div class="card">
+            <p>Arabe — Courante<br>Français — C1<br>Anglais — B2</p>
+          </div>
+          <div class="section-title" style="margin-top: 16px"><span class="pill"></span><h2>Technos & outils</h2></div>
+          <div class="card">
+            <div class="stack-list">
+              <span class="tag">React</span>
+              <span class="tag">Next.js</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Angular</span>
+              <span class="tag">Python</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Flask</span>
+              <span class="tag">REST</span>
+              <span class="tag">Tailwind</span>
+              <span class="tag">Storybook</span>
+              <span class="tag">AG Grid</span>
+              <span class="tag">Java</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">Android</span>
+              <span class="tag">Figma</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-title"><span class="pill"></span><h2>Contact</h2></div>
+      <div class="card">
+        <p>Envie d’échanger ?
+          <a href="mailto:ihab.souey@gmail.com">Écrivez‑moi</a> ou appelez‑moi au <a href="tel:+33745325577">+33 7 45 32 55 77</a>.
+        </p>
+        <div class="stack-list">
+          <a class="btn btn-ghost" href="mailto:ihab.souey@gmail.com">Email</a>
+          <a class="btn btn-ghost" href="https://linkedin.com/in/ihab-souey" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+        </div>
+      </div
